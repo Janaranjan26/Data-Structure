@@ -1,0 +1,62 @@
+class Node:
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+
+    def insert_at_begining(self, data):
+        node = Node(data, self.head)
+        self.head = node
+
+
+    def insert_at_end(self, data):
+        if self.head is None:
+            self.head = Node(data, None)
+            return
+
+        itr = self.head
+        while itr.next:
+            itr = itr.next
+        itr.next = Node(data, None)
+
+
+    def insert_values(self, data_list):
+        #self.head = None
+        for data in data_list:
+            self.insert_at_end(data)
+
+
+    def print_linkedlist(self):
+        if self.head is None:
+            print("Linked List is empty")
+            return
+
+        itr = self.head
+        llstr = ''
+        while itr:
+            if itr.next is None:
+                llstr += str(itr.data)
+                break
+            llstr += str(itr.data) + ' --> '
+            itr = itr.next
+
+        print(llstr)
+
+ll1 = LinkedList()
+
+
+# Inserting at the beginning of the linked list
+ll1.insert_at_begining(2)
+ll1.insert_at_begining(34)
+# Inserting at the end of the linked list
+ll1.insert_at_end(43)
+# Printing Linked List
+ll1.print_linkedlist()
+
+ll2 = LinkedList()
+ll2.insert_values(["Dog", "Cat", "Rabbit"])
+ll2.print_linkedlist()
