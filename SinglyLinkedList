@@ -29,6 +29,52 @@ class LinkedList:
         for data in data_list:
             self.insert_at_end(data)
 
+        def insert_at(self, index, data):
+        if index < 0 or index > self.get_length():
+            raise Exception("Invalid Index")
+
+        if index == 0:
+            self.insert_at_begining(data)
+            return
+
+        if index == self.get_length():
+            self.insert_at_end(data)
+            return
+
+        count = 0
+        itr = self.head
+        while itr:
+            if count == index - 1:
+                node = Node(data, itr.next)
+                itr.next = node
+                break
+            itr = itr.next
+            count += 1
+
+    def remove_at(self, index):
+        if index < 0 or index >= self.get_length():
+            raise Exception("Invalid Index")
+
+        if index == 0:
+            self.head = self.head.next
+            return
+
+        count = 0
+        itr = self.head
+        while itr:
+            if count == index -1:
+                itr.next = itr.next.next
+                break
+            itr = itr.next
+            count += 1
+
+    def get_length(self):
+        counter = 0
+        itr = self.head
+        while itr:
+            counter += 1
+            itr = itr.next
+        return counter
 
     def print_linkedlist(self):
         if self.head is None:
@@ -56,7 +102,15 @@ ll1.insert_at_begining(34)
 ll1.insert_at_end(43)
 # Printing Linked List
 ll1.print_linkedlist()
-
+# creating linked list using array of data
 ll2 = LinkedList()
 ll2.insert_values(["Dog", "Cat", "Rabbit"])
+ll2.print_linkedlist()
+# Printing the length of linked list
+print(ll2.get_length())
+# Removing a node at specific index
+ll2.remove_at(2)
+ll2.print_linkedlist()
+# Inserting a node at specific index
+ll2.insert_at(2, 'Cow')
 ll2.print_linkedlist()
