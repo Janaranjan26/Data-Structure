@@ -60,7 +60,7 @@ class LinkedList:
                 break
             itr = itr.next
             count += 1
-        pass
+        print(f"Value '{data_after}' not found in the linked list")
 
     def remove_at(self, index):
         if index < 0 or index >= self.get_length():
@@ -80,6 +80,14 @@ class LinkedList:
             count += 1
 
     def remove_by_value(self, data):
+         if self.head is None:
+            print("List is empty")
+            return
+
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+
         itr = self.head
         count = 0
         while itr:
@@ -87,6 +95,7 @@ class LinkedList:
                 self.remove_at(count)
             itr = itr.next
             count += 1
+        print(f"Value '{data}' not found in the linked list")
 
     def get_length(self):
         counter = 0
